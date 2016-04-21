@@ -34,11 +34,11 @@
   var scene2 = new BABYLON.Scene(engine);
  
   // Creating a camera looking to the zero point (0,0,0), a light, and a sphere of size 1
-  var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, 1.0, 110, BABYLON.Vector3.Zero(), scene);
-    camera.attachControl(canvas, true);
-/*var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, -8, -30), scene);
+  /*var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, 1.0, 110, BABYLON.Vector3.Zero(), scene);
+    camera.attachControl(canvas, true);*/
+var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, -8, -30), scene);
 camera.speed = 3.0;
-camera.attachControl(canvas);*/
+camera.attachControl(canvas);
   var light0 = new BABYLON.PointLight("Omni", new BABYLON.Vector3(3, 0, 10), scene);
   var cylinder = BABYLON.Mesh.CreateCylinder("cylinder1", 1, 5, 5, 6, 1, scene);
   var firstLine = [];
