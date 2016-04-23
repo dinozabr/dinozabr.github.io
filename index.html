@@ -3,61 +3,17 @@
  <head>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Квиддич онлайн</title>
-	<script src="babylon.js"></script>
-	<script src="hand.js"></script>
-	<style>
-	html, body, div {           
-            padding: 0;
-            margin: 0;
-    }
-	canvas{
-			padding-left:200px;		
-			overflow:hidden;
-			position:fixed;
-	}
-	#chat{
-		
-		
-		width:300px;
-		height:100%;
-		background-color:blue;
-		border-color:black;
-		position:fixed;
-		right:1px;
-		overflow:hidden;
-	}
-	#message{
-		background-color:red;
-		margin-bottom:0px;
-		height:120px;
-		position:fixed;
-		width:300px;		
-		bottom:0px;
-		
-		
-	}
-	#sendMessage{
-		color:blue;
-		bottom:0px;		
-	}
-	#messageForm{
-		margin-top:0px;
-		
-	}
-	
-	textarea{
-		
-		width:98%;
-	}
-	</style>
+	<script src="libraries/babylon.js"></script>
+	<script src="libraries/hand.js"></script>
+
  </head>
- <body>
+ <body >
 <div id="chat">
 	<div id="message">
 		<form id="messageForm">
 			<p><textarea name="messageText" placeholder="Введите ваше сообщение" rows="3"></textarea></p>
 			<p><button id="sendMessage"   type="submit" >Отправить</button></p>
-		<form>
+		</form>
 	</div>
 </div>
  <div id="gameField">
@@ -67,42 +23,36 @@
 
  </body>
  <script type="text/javascript">
-  
-  // Get the Canvas element from our HTML below
   var canvas = document.getElementById("renderCanvas");
-  // Load BABYLON 3D engine
   var engine = new BABYLON.Engine(canvas, true);
-  var scene = new BABYLON.Scene(engine);
-  var scene2 = new BABYLON.Scene(engine);
- 
-  // Creating a camera looking to the zero point (0,0,0), a light, and a sphere of size 1
-  var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, 1.0, 110, BABYLON.Vector3.Zero(), scene);
-    camera.attachControl(canvas, true);
+  var createScene = function(){
+	var scene = new BABYLON.Scene(engine);
+	var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+    light.intensity = .7;
+	var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, 1.0, 110, BABYLON.Vector3.Zero(), scene);
+	camera.attachControl(canvas, true);
 /*var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, -8, -30), scene);
 camera.speed = 3.0;
-camera.attachControl(canvas);*/
-  var light0 = new BABYLON.PointLight("Omni", new BABYLON.Vector3(3, 0, 10), scene);
-  var cylinder = BABYLON.Mesh.CreateCylinder("cylinder1", 1, 5, 5, 6, 1, scene);
-  var firstLine = [];
-  firstLine.push(cylinder);
-  for(var i = 1; i < 9; i++){
-	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
-	 c.position.z = firstLine[i-1].position.z + 5;
-	firstLine.push(c)
-  }
-
- 
-  var secondLine = [];
-  var c = new BABYLON.Mesh.CreateCylinder("cylinder10",1,5,5,6,1,scene);
-  c.position.x = cylinder.position.x + 4;
-  c.position.z = cylinder.position.z + 2.5;
-  secondLine.push(c);
-  for(var i = 1; i < 8; i++){
-	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
-	 c.position.x = secondLine[i-1].position.x;
-	 c.position.z = secondLine[i-1].position.z + 5;
-	 secondLine.push(c);
-  }
+camera.attachControl(canvas);*/ 
+	var cylinder = BABYLON.Mesh.CreateCylinder("cylinder1", 1, 5, 5, 6, 1, scene);
+	var firstLine = [];
+	firstLine.push(cylinder);
+	for(var i = 1; i < 9; i++){
+		var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
+		c.position.z = firstLine[i-1].position.z + 5;
+		firstLine.push(c)
+	}
+	var secondLine = [];
+	var c = new BABYLON.Mesh.CreateCylinder("cylinder10",1,5,5,6,1,scene);
+	c.position.x = cylinder.position.x + 4;
+	c.position.z = cylinder.position.z + 2.5;
+	secondLine.push(c);
+	for(var i = 1; i < 8; i++){
+		var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
+		c.position.x = secondLine[i-1].position.x;
+		c.position.z = secondLine[i-1].position.z + 5;
+		secondLine.push(c);
+	}
   
   var thirdLine = [];
   c = new BABYLON.Mesh.CreateCylinder("cylinder10",1,5,5,6,1,scene);
@@ -282,14 +232,9 @@ camera.attachControl(canvas);*/
 	niLine.push(c)
   }
  
-  
-	
-	
-	
-  
-  
-		
-  
+		return scene;
+  }
+  var scene = createScene();
   scene.activeCamera.attachControl(canvas);
  
  
