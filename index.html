@@ -17,15 +17,21 @@
 			</form>
 		</div>
 	</div>
-	<canvas id="renderCanvas" width="600" height="400"></canvas>
+	<canvas id="renderCanvas" width="1000" height="600"></canvas>
  	<div id="gameField"></div>
 
  </body>
  <script type="text/javascript">
   var canvas = document.getElementById("renderCanvas");
   var engine = new BABYLON.Engine(canvas, true);
+  
   var createScene = function(){
+ 
 	var scene = new BABYLON.Scene(engine);
+	 var material = new BABYLON.StandardMaterial("cyl",scene);
+	
+	material.diffuseColor = new BABYLON.Color3.FromInts(218,165,32);
+	scene.clearColor = new BABYLON.Color4(0,0,0,0);
 	var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
     light.intensity = .7;
 	var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, 1.0, 110, BABYLON.Vector3.Zero(), scene);
@@ -34,10 +40,12 @@
 camera.speed = 3.0;
 camera.attachControl(canvas);*/ 
 	var cylinder = BABYLON.Mesh.CreateCylinder("cylinder1", 1, 5, 5, 6, 1, scene);
+	cylinder.material = material;
 	var firstLine = [];
 	firstLine.push(cylinder);
 	for(var i = 1; i < 9; i++){
 		var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
+		c.material = material;
 		c.position.z = firstLine[i-1].position.z + 5;
 		firstLine.push(c)
 	}
@@ -45,10 +53,13 @@ camera.attachControl(canvas);*/
 	var c = new BABYLON.Mesh.CreateCylinder("cylinder10",1,5,5,6,1,scene);
 	c.position.x = cylinder.position.x + 4;
 	c.position.z = cylinder.position.z + 2.5;
+	c.material = material;
 	secondLine.push(c);
 	for(var i = 1; i < 8; i++){
+	c.material = material;
 		var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 		c.position.x = secondLine[i-1].position.x;
+			c.material = material;
 		c.position.z = secondLine[i-1].position.z + 5;
 		secondLine.push(c);
 	}
@@ -57,10 +68,12 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder10",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x + 8 ;
   c.position.z = firstLine[0].position.z;
+  c.material = material;
   thirdLine.push(c);
   for(var i = 1; i < 9; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = thirdLine[i-1].position.x;
+	 c.material = material;
 	 c.position.z = thirdLine[i-1].position.z + 5;
 	thirdLine.push(c)
   }
@@ -69,10 +82,12 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder11",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x + 12 ;
   c.position.z = secondLine[0].position.z;
+  c.material = material;
   fouthLine.push(c);
   for(var i = 1; i < 8; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = fouthLine[i-1].position.x;
+	 c.material = material;
 	 c.position.z = fouthLine[i-1].position.z + 5;
 	fouthLine.push(c)
   }
@@ -81,11 +96,13 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder12",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x + 16 ;
   c.position.z = firstLine[0].position.z;
+  c.material = material;
   fifthLine.push(c);
   for(var i = 1; i < 9; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = fifthLine[i-1].position.x;
 	 c.position.z = fifthLine[i-1].position.z + 5;
+	 c.material = material;
 	fifthLine.push(c)
   }
   
@@ -93,11 +110,13 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x + 20 ;
   c.position.z = secondLine[0].position.z;
+  c.material = material;
   sixLine.push(c);
   for(var i = 1; i < 8; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = sixLine[i-1].position.x;
 	 c.position.z = sixLine[i-1].position.z + 5;
+	 c.material = material;
 	sixLine.push(c)
   }
   
@@ -105,11 +124,13 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x + 24 ;
   c.position.z = firstLine[1].position.z;
+  c.material = material;
   sevenLine.push(c);
   for(var i = 1; i < 7; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = sevenLine[i-1].position.x;
 	 c.position.z = sevenLine[i-1].position.z + 5;
+	 c.material = material;
 	sevenLine.push(c)
   }
   
@@ -117,22 +138,26 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x + 28 ;
   c.position.z = secondLine[1].position.z;
+  c.material = material;
   eightLine.push(c);
   for(var i = 1; i < 6; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = eightLine[i-1].position.x;
 	 c.position.z = eightLine[i-1].position.z + 5;
+	 c.material = material;
 	eightLine.push(c)
   }
   var nineLine = [];
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x + 32 ;
   c.position.z = sevenLine[2].position.z;
+  c.material = material;
   nineLine.push(c);
   for(var i = 1; i < 3; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = nineLine[i-1].position.x;
 	 c.position.z = nineLine[i-1].position.z +  5;
+	 c.material = material;
 	nineLine.push(c)
   }
   
@@ -140,11 +165,13 @@ camera.attachControl(canvas);*/
   var c = new BABYLON.Mesh.CreateCylinder("cylinder101",1,5,5,6,1,scene);
   c.position.x = cylinder.position.x - 4;
   c.position.z = cylinder.position.z + 2.5;
+  c.material = material;
   sLine.push(c);
   for(var i = 1; i < 8; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = sLine[i-1].position.x;
 	 c.position.z = sLine[i-1].position.z + 5;
+	 c.material = material;
 	 sLine.push(c);
   }
   
@@ -152,10 +179,12 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder10",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x - 8 ;
   c.position.z = firstLine[0].position.z;
+  c.material = material;
   tLine.push(c);
   for(var i = 1; i < 9; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = tLine[i-1].position.x;
+	 c.material = material;
 	 c.position.z = tLine[i-1].position.z + 5;
 	tLine.push(c)
   }
@@ -163,23 +192,27 @@ camera.attachControl(canvas);*/
   var fLine = [];
   c = new BABYLON.Mesh.CreateCylinder("cylinder11",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x - 12;
+  c.material = material;
   c.position.z = secondLine[0].position.z;
   fLine.push(c);
   for(var i = 1; i < 8; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = fLine[i-1].position.x;
 	 c.position.z = fLine[i-1].position.z + 5;
+	 c.material = material;
 	fLine.push(c)
   }
   
   var fiLine = [];
   c = new BABYLON.Mesh.CreateCylinder("cylinder12",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x - 16;
+  c.material = material;
   c.position.z = firstLine[0].position.z;
   fiLine.push(c);
   for(var i = 1; i < 9; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = fiLine[i-1].position.x;
+	 c.material = material;
 	 c.position.z = fiLine[i-1].position.z + 5;
 	fiLine.push(c)
   }
@@ -188,11 +221,13 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x - 20 ;
   c.position.z = secondLine[0].position.z;
+  c.material = material;
   siLine.push(c);
   for(var i = 1; i < 8; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = siLine[i-1].position.x;
 	 c.position.z = siLine[i-1].position.z + 5;
+	 c.material = material;
 	siLine.push(c)
   }
   
@@ -200,11 +235,13 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x - 24 ;
   c.position.z = firstLine[1].position.z;
+  c.material = material;
   seLine.push(c);
   for(var i = 1; i < 7; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = seLine[i-1].position.x;
 	 c.position.z = seLine[i-1].position.z + 5;
+	 c.material = material;
 	seLine.push(c)
   }
   
@@ -212,22 +249,26 @@ camera.attachControl(canvas);*/
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x - 28;
   c.position.z = secondLine[1].position.z;
+  	c.material = material;
   eiLine.push(c);
   for(var i = 1; i < 6; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = eiLine[i-1].position.x;
 	 c.position.z = eiLine[i-1].position.z + 5;
+	 c.material = material;
 	eiLine.push(c)
   }
   var niLine = [];
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x - 32;
   c.position.z = sevenLine[2].position.z;
+  c.material = material;
   niLine.push(c);
   for(var i = 1; i < 3; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = niLine[i-1].position.x;
 	 c.position.z = niLine[i-1].position.z + 5;
+	 c.material = material;
 	niLine.push(c)
   }
 	var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager","images/player.png",1,64,scene);
@@ -235,8 +276,6 @@ camera.attachControl(canvas);*/
 	player.width = 0.3;
 	player.height = 0.4;
 	
-	var material = new BABYLON.StandardMaterial("std",scene);
-	material.diffuseColor = new BABYLON.Color3(0.5,0,0.5);
 	
 	cylinder.material = material;
 	
