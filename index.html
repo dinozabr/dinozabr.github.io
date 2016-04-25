@@ -230,12 +230,23 @@ camera.attachControl(canvas);*/
 	 c.position.z = niLine[i-1].position.z + 5;
 	niLine.push(c)
   }
+	var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager","images/player.png",1,64,scene);
+	var player = new BABYLON.Sprite("player",spriteManagerPlayer);
+	player.width = 0.3;
+	player.height = 0.4;
+	
+	var material = new BABYLON.StandardMaterial("std",scene);
+	material.diffuseColor = new BABYLON.Color3(0.5,0,0.5);
+	
+	cylinder.material = material;
+	
+	
  
 		return scene;
   }
   var scene = createScene();
   scene.activeCamera.attachControl(canvas);
- 
+	
  
   engine.runRenderLoop(function () {
     scene.render();	
