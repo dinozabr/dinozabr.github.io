@@ -34,11 +34,12 @@
 	scene.clearColor = new BABYLON.Color4(0,0,0,0);
 	var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
     light.intensity = .7;
-	var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, 1.0, 110, BABYLON.Vector3.Zero(), scene);
-	camera.attachControl(canvas, true);
-/*var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, -8, -30), scene);
-camera.speed = 3.0;
-camera.attachControl(canvas);*/ 
+	
+	
+	/*var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, -8, -30), scene);
+	camera.speed = 3.0;
+	camera.attachControl(canvas);*/ 
+	
 	var cylinder = BABYLON.Mesh.CreateCylinder("cylinder1", 1, 5, 5, 6, 1, scene);
 	cylinder.material = material;
 	var firstLine = [];
@@ -49,6 +50,8 @@ camera.attachControl(canvas);*/
 		c.position.z = firstLine[i-1].position.z + 5;
 		firstLine.push(c)
 	}
+	var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, 1.0, 110, new BABYLON.Vector3(firstLine[4].position.x,firstLine[4].position.y,firstLine[4].position.z), scene);
+	camera.attachControl(canvas, true);
 	var secondLine = [];
 	var c = new BABYLON.Mesh.CreateCylinder("cylinder10",1,5,5,6,1,scene);
 	c.position.x = cylinder.position.x + 4;
@@ -271,10 +274,7 @@ camera.attachControl(canvas);*/
 	 c.material = material;
 	niLine.push(c)
   }
-	var spriteManagerPlayer = new BABYLON.SpriteManager("playerManager","images/player.png",1,64,scene);
-	var player = new BABYLON.Sprite("player",spriteManagerPlayer);
-	player.width = 0.3;
-	player.height = 0.4;
+	
 	
 	
 	cylinder.material = material;
@@ -283,7 +283,14 @@ camera.attachControl(canvas);*/
  
 		return scene;
   }
+  
+  
   var scene = createScene();
+ 
+  
+  
+  
+  
   scene.activeCamera.attachControl(canvas);
 	
  
