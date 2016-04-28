@@ -4,15 +4,18 @@ html, div {
 
 }
 body{
-    background:url('images/field1.png');
+    background:url('images/field.png');
     padding: 0;
     margin: 0;
+	background-size:cover;
 
 }
 
 canvas{
     overflow:hidden;
     position:fixed;
+	width:78%;
+	height:100%;
 }
 #chat{
 

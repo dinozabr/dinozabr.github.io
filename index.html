@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="style.css" >
  </head>
 
- <body >
+ <body  background='images/field1.png'>
 	<div id="chat">
 		<div id="message">
 			<form id="messageForm">
@@ -17,7 +17,7 @@
 			</form>
 		</div>
 	</div>
-	<canvas id="renderCanvas" width="1000" height="600"></canvas>
+	<canvas id="renderCanvas"></canvas>
  	<div id="gameField"></div>
 
  </body>
@@ -31,10 +31,15 @@
 	 var material = new BABYLON.StandardMaterial("cyl",scene);
 	
 	material.diffuseColor = new BABYLON.Color3.FromInts(218,165,32);
-	scene.clearColor = new BABYLON.Color4(0,0,0,0);
+	
 	var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
     light.intensity = .7;
+	<!------------------------------------------------------->
+	var ground = BABYLON.Mesh.CreateGround("ground", 100, 100, 1, scene, false);
+    var groundMaterial = new BABYLON.StandardMaterial("ground", scene);
 	
+    
+	<!------------------------------------------------------->
 	
 	/*var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, -8, -30), scene);
 	camera.speed = 3.0;
@@ -62,7 +67,7 @@
 	c.material = material;
 		var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 		c.position.x = secondLine[i-1].position.x;
-			c.material = material;
+		c.material = material;
 		c.position.z = secondLine[i-1].position.z + 5;
 		secondLine.push(c);
 	}
@@ -154,13 +159,16 @@
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x + 32 ;
   c.position.z = sevenLine[2].position.z;
-  c.material = material;
+  var materialVor = new BABYLON.StandardMaterial("texture2", scene);
+  materialVor.diffuseColor = new BABYLON.Color3(1, 0, 0); //Red
+	c.material 	= materialVor;
+  
   nineLine.push(c);
   for(var i = 1; i < 3; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = nineLine[i-1].position.x;
 	 c.position.z = nineLine[i-1].position.z +  5;
-	 c.material = material;
+	 c.material = materialVor;
 	nineLine.push(c)
   }
   
@@ -265,13 +273,13 @@
   c = new BABYLON.Mesh.CreateCylinder("cylinder13",1,5,5,6,1,scene);
   c.position.x = firstLine[0].position.x - 32;
   c.position.z = sevenLine[2].position.z;
-  c.material = material;
+  c.material = materialVor;
   niLine.push(c);
   for(var i = 1; i < 3; i++){
 	 var c = BABYLON.Mesh.CreateCylinder("cylinder"+i, 1, 5, 5, 6, 1, scene);
 	 c.position.x = niLine[i-1].position.x;
 	 c.position.z = niLine[i-1].position.z + 5;
-	 c.material = material;
+	 c.material = materialVor;
 	niLine.push(c)
   }
 	
@@ -280,7 +288,168 @@
 	cylinder.material = material;
 	
 	
- 
+	var sphere = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere.material = materialVor;
+	sphere.position.y +=3;
+	sphere.position.z = secondLine[0].position.z;
+	sphere.position.x = secondLine[0].position.x;
+	
+	var sphere1 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere1.material = materialVor;
+	sphere1.position.y +=3;	
+	sphere1.position.z = thirdLine[0].position.z;
+	sphere1.position.x = thirdLine[0].position.x;
+	
+	var sphere2 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere2.material = materialVor;
+	sphere2.position.y +=3;	
+	sphere2.position.z = fouthLine[0].position.z;
+	sphere2.position.x = fouthLine[0].position.x;
+	
+	var sphere3 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere3.material = materialVor;
+	sphere3.position.y +=3;
+	sphere3.position.z = fifthLine[0].position.z;
+	sphere3.position.x = fifthLine[0].position.x;
+	
+	var sphere4 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere4.material = materialVor;
+	sphere4.position.y +=3;	
+	sphere4.position.z = sixLine[0].position.z;
+	sphere4.position.x = sixLine[0].position.x;
+	
+	var sphere5 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere5.material = materialVor;
+	sphere5.position.y +=3;
+	sphere5.position.z = sevenLine[0].position.z;
+	sphere5.position.x = sevenLine[0].position.x;
+	
+	var sphere6 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere6.material = materialVor;
+	sphere6.position.y +=3;
+	sphere6.position.z = eightLine[0].position.z;
+	sphere6.position.x = eightLine[0].position.x;
+	
+	var materialVor1 = new BABYLON.StandardMaterial("texture2", scene);
+    materialVor1.diffuseColor = new BABYLON.Color3(0, 0, 1); //Blue
+  
+	var sphere0 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere0.material = materialVor1;
+	sphere0.position.y +=3;
+	sphere0.position.z = siLine[0].position.z;
+	sphere0.position.x = siLine[0].position.x;
+	
+	var sphere11 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere11.material = materialVor1;
+	sphere11.position.y +=3;	
+	sphere11.position.z = tLine[0].position.z;
+	sphere11.position.x = tLine[0].position.x;
+
+	var sphere12 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere12.material = materialVor1;
+	sphere12.position.y +=3;	
+	sphere12.position.z = fLine[0].position.z;
+	sphere12.position.x = fLine[0].position.x;
+	
+	var sphere13 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere13.material = materialVor1;
+	sphere13.position.y +=3;
+	sphere13.position.z = fiLine[0].position.z;
+	sphere13.position.x = fiLine[0].position.x;
+	
+	var sphere14 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere14.material = materialVor1;
+	sphere14.position.y +=3;	
+	sphere14.position.z = sLine[0].position.z;
+	sphere14.position.x = sLine[0].position.x;
+	
+	var sphere15 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere15.material = materialVor1;
+	sphere15.position.y +=3;
+	sphere15.position.z = seLine[0].position.z;
+	sphere15.position.x = seLine[0].position.x;
+	
+	var sphere16 = BABYLON.Mesh.CreateSphere("sphere", 3.0, 3.0, scene, false,  BABYLON.Mesh.DEFAULTSIDE);
+	sphere16.material = materialVor1;
+	sphere16.position.y +=3;
+	sphere16.position.z = eiLine[0].position.z;
+	sphere16.position.x = eiLine[0].position.x;
+	
+	 var startingPoint;
+    var currentMesh;
+
+    var getGroundPosition = function () {
+        // Use a predicate to get position on the ground
+        var pickinfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh == ground ; });
+        if (pickinfo.hit) {
+            return pickinfo.pickedPoint;
+        }
+
+        return null;
+    }
+
+    var onPointerDown = function (evt) {
+        if (evt.button !== 0) {
+            return;
+        }
+
+        // check if we are under a mesh
+        var pickInfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh !== ground && (mesh == sphere || mesh == sphere1 || mesh == sphere2 || mesh == sphere3 || mesh == sphere4 || mesh == sphere5 || mesh == sphere6 || mesh == sphere0 || mesh == sphere11 || mesh == sphere12 || mesh == sphere13 || mesh == sphere14 || mesh == sphere15 || mesh == sphere16); });
+        if (pickInfo.hit) {
+            currentMesh = pickInfo.pickedMesh;
+            startingPoint = getGroundPosition(evt);
+
+            if (startingPoint) { // we need to disconnect camera from canvas
+                setTimeout(function () {
+                    camera.detachControl(canvas);
+                }, 0);
+            }
+        }
+    }
+
+    var onPointerUp = function () {
+        if (startingPoint) {
+            camera.attachControl(canvas, true);
+            startingPoint = null;
+            return;
+        }
+    }
+
+    var onPointerMove = function (evt) {
+        if (!startingPoint) {
+            return;
+        }
+
+        var current = getGroundPosition(evt);
+
+        if (!current) {
+            return;
+        }
+
+        var diff = current.subtract(startingPoint);
+        currentMesh.position.addInPlace(diff);
+
+        startingPoint = current;
+
+    }
+
+    canvas.addEventListener("pointerdown", onPointerDown, false);
+    canvas.addEventListener("pointerup", onPointerUp, false);
+    canvas.addEventListener("pointermove", onPointerMove, false);
+
+    scene.onDispose = function () {
+        canvas.removeEventListener("pointerdown", onPointerDown);
+        canvas.removeEventListener("pointerup", onPointerUp);
+        canvas.removeEventListener("pointermove", onPointerMove);
+    }
+	
+	scene.clearColor = new BABYLON.Color4(0,0,0,0);
+	ground.clearColor = new BABYLON.Color4(1,0,0,0);
+	scene.collisionsEnabled = true;
+	camera.checkCollisions = true;
+	ground.checkCollisions = true;
+	sphere.checkCollisions = true;
+		
 		return scene;
   }
   
@@ -293,7 +462,8 @@
   
   scene.activeCamera.attachControl(canvas);
 	
- 
+	
+	
   engine.runRenderLoop(function () {
     scene.render();	
   });
