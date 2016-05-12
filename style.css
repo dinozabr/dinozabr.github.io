@@ -7,29 +7,81 @@ body{
     background:url('images/field.png');
     padding: 0;
     margin: 0;
-	background-size:cover;
+	
 
 }
-
+img{
+	width:40px;
+	height:40px;
+}
 canvas{
     overflow:hidden;
     position:fixed;
 	width:78%;
 	height:100%;
 }
+#panel {
+    position: fixed; /* положение */
+    top: 100px; /* отступ сверху */
+    left: 0; /* отступ слева */
+    background: green; /* цвет фона */
+    width: 50px; /* ширина блока */
+    height: 40px; /* высота блока */
+    font: 14px Arial; /* размер и тип шрифта */
+    color: #fff; /* цвет текста */
+    text-align: center; /* выравнивание текста по центру */
+    padding: 5px; /* отступы от границ внутри блока */
+    -webkit-transition-duration: 0.3s; /* анимационное выдвижение для всех браузеров*/
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-border-radius: 0 5px 5px 0; /* закругление границ для всех браузеров*/
+    -moz-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+    }
+
+/* СКРЫТЫЙ БЛОК */
+#hidden_panel {
+    position: fixed; /* положение */
+    top: 100px; /* отступ сверху */
+    left: -220px; /* отступ слева */
+    background: lavender; /* цвет фона */
+    color: #000; /* цвет текста */
+    width: 200px; /* ширина блока */
+    height: 280px; /* высота блока */
+    padding: 10px; /* отступы от границ внутри блока */
+    text-align: left; /* выравнивание текста */
+
+    -webkit-transition-duration: 0.3s; /* анимационное выдвижение для всех браузеров*/
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+
+    -webkit-border-radius: 0 5px 5px 0; /* закругление границ для всех браузеров*/
+    -moz-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+    }
+
+#panel:hover {
+    left: 220px; /* при наведении выдвигается на скрытые 200px + 20px отступы */
+}
+#panel:hover #hidden_panel {
+    left: 0; /* отступ слева */
+}
 #chat{
 
 
     width:300px;
     height:100%;
-    background-color:blue;
-    border-color:black;
+    background-color:white;
+    
+	border:4px double black;
     position:fixed;
     right:1px;
     overflow:hidden;
 }
 #message{
-    background-color:red;
+    background-color:grey;
     margin-bottom:0px;
     height:120px;
     position:fixed;
@@ -39,8 +91,9 @@ canvas{
 
 }
 #sendMessage{
-    color:blue;
-    bottom:0px;
+    color:white;
+	background:navy;
+    
 }
 #messageForm{
     margin-top:0px;
